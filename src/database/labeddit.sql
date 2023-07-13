@@ -17,10 +17,13 @@ CREATE TABLE
         content TEXT NOT NULL,
         likes INTEGER NOT NULL,
         dislikes INTEGER NOT NULL,
-        comments INTEGER NOT NULL,
+        coments INTEGER NOT NULL,
         created_at TEXT NOT NULL,
         updated_at TEXT NOT NULL,
         FOREIGN KEY (creator_id) REFERENCES users (id) 
+            ON UPDATE CASCADE 
+            ON DELETE CASCADE,
+        FOREIGN KEY (coments) REFERENCES coment (coment) 
             ON UPDATE CASCADE 
             ON DELETE CASCADE
     );
@@ -40,12 +43,9 @@ CREATE TABLE
 
 CREATE TABLE
     coments (
-        id TEXT PRIMARY KEY UNIQUE NOT NULL,
         user_id TEXT NOT NULL,
         post_id TEXT NOT NULL,
-        coment TEXT NOT NULL,
-        created_at TEXT NOT NULL,
-        updated_at TEXT NOT NULL,
+        coment INTEGER NOT NULL,
         FOREIGN KEY (user_id) REFERENCES users (id) 
             ON UPDATE CASCADE 
             ON DELETE CASCADE,
